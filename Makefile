@@ -1,4 +1,4 @@
-VERSION=2.6.0
+VERSION=2.6.1
 COMMIT=$(shell git rev-parse --verify HEAD)
 BUILD_FLAGS=-ldflags "-X main.VERSION=$(VERSION) -X main.COMMIT=$(COMMIT)"
 
@@ -15,13 +15,13 @@ clean:
 	rm -rf h2spec release
 
 build-container:
-	docker build --build-arg VERSION=$(VERSION) --build-arg COMMIT=$(COMMIT) -t summerwind/h2spec:latest -t summerwind/h2spec:$(VERSION) .
+	docker build --build-arg VERSION=$(VERSION) --build-arg COMMIT=$(COMMIT) -t olamy/h2spec:latest -t olamy/h2spec:$(VERSION) .
 
 push-container:
-	docker push summerwind/h2spec:latest
+	docker push olamy/h2spec:latest
 
 push-release-container:
-	docker push summerwind/h2spec:$(VERSION)
+	docker push olamy/h2spec:$(VERSION)
 
 release:
 	mkdir -p release
